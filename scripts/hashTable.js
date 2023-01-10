@@ -40,6 +40,21 @@ class HashTable {
     }
     return undefined;
   }
+
+  keys() {
+    const buckets = this.data;
+    const keys = buckets.reduce((keyNames, bucket) => {
+      const numPairs = bucket.length;
+      if (numPairs) {
+        bucket.forEach((array) => {
+          const key = array[0];
+          keyNames.push(key);
+        });
+        return keyNames;
+      }
+    }, []);
+    return keys;
+  }
 }
 
 // Testing Values
@@ -47,3 +62,4 @@ const myHashTable = new HashTable(50);
 myHashTable.set("grapes", 10000);
 console.dir(myHashTable);
 console.log(myHashTable.get("grapes"));
+console.log(myHashTable.keys());
