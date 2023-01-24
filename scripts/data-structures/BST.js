@@ -41,8 +41,20 @@ class BinarySearchTree {
     }
     return this;
   }
+
+  // Time complexity: O(log n)
+  // Space complexity: O(n)
   lookup(value) {
-    //Code here
+    let curNode = this.root;
+
+    while (curNode) {
+      if (value === curNode.value) {
+        return curNode;
+      }
+      curNode = value < curNode.value ? curNode.left : curNode.right;
+    }
+
+    return false;
   }
   remove(value) {
     //Code here
@@ -58,6 +70,9 @@ tree.insert(170);
 tree.insert(15);
 console.log(tree.insert(1));
 console.log(JSON.stringify(traverse(tree.root)));
+console.log(tree.lookup(1));
+console.log(tree.lookup(0));
+console.log(tree.lookup(10));
 
 //     9
 //  4     20
