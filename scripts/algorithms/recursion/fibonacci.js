@@ -51,7 +51,26 @@ function fibonacciRecursive(n) {
   return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
 }
 
+function fibonacciMaster(n) {
+  let cache = {};
+  return function fibonacci(n) {
+    if (n in cache) {
+      return cache[n];
+    } else {
+      // Base case
+      if (n < 2) return n;
+
+      // Recursive case
+      cache[n] = fibonacci(n - 1) + fibonacci(n - 2);
+      return cache[n];
+    }
+  };
+}
+
+const fibonacciMemoization = fibonacciMaster();
+
 // Testing values
 console.log(fibonacciIterative1(10)); // 55
 console.log(fibonacciIterative2(10)); // 55
 console.log(fibonacciRecursive(10)); // 55
+console.log(fibonacciMemoization(10)); // 55
