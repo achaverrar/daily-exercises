@@ -40,8 +40,35 @@ return the reversed string
 // Implementation 1
 function reverse2(str) {
   if (typeof str !== "string" || str < 1) return;
-  return str.split().reverse().join("");
+  return str.split("").reverse().join("");
 }
 
 // Implementation 2
 const reverse3 = (str) => [...str].reverse().join("");
+
+// Solution 3
+/* 
+ Make an array out of the string chars and
+ append them to the beginning of a new string,
+ which will become the reversed string we are
+ looking for.
+*/
+
+// Implementation 1
+function reverse4(str) {
+  let reversed = "";
+  for (let char of str) {
+    reversed = char + reversed;
+  }
+  return reversed;
+}
+
+// Implementation 2
+function reverse5(str) {
+  const reversed = str.split("").reduce((result, currentChar) => {
+    result = currentChar + result;
+    return result;
+  }, "");
+
+  return reversed;
+}
